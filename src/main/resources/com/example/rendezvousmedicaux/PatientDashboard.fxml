@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rendezvousmedicaux.PatientDashboardController">
+    <children>
+        <VBox spacing="20.0" style="-fx-padding: 20;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #F8F9FA; -fx-padding: 15; -fx-background-radius: 10;">
+                    <children>
+                  <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/patient.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Bienvenue, ">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <style>
+                                -fx-text-fill: #2C3E50;
+                            </style>
+                        </Label>
+                        <Label fx:id="patientNameLabel" text="[Nom du patient]">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <style>
+                                -fx-text-fill: #3498DB;
+                            </style>
+                        </Label>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" text="Déconnexion">
+                            <style>
+                                -fx-background-color: #E74C3C;
+                                -fx-text-fill: WHITE;
+                                -fx-font-weight: bold;
+                                -fx-padding: 10 20;
+                                -fx-background-radius: 5;
+                                -fx-cursor: hand;
+                            </style>
+                     <graphic>
+                        <HBox prefHeight="19.0" prefWidth="25.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/deconnexion.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <TabPane prefHeight="500.0" prefWidth="780.0" style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE">
+                    <style>
+                        -fx-tab-min-height: 40px;
+                        -fx-tab-max-height: 40px;
+                    </style>
+                    <tabs>
+                        <Tab text="Mes Rendez-vous">
+                            <content>
+                                <VBox spacing="15.0" style="-fx-padding: 20;">
+                                    <TableView fx:id="appointmentsTable" prefHeight="400.0">
+                                        <style>
+                                            -fx-background-color: #FFFFFF;
+                                            -fx-table-cell-border-color: #E9ECEF;
+                                            -fx-background-radius: 5;
+                                            -fx-border-radius: 5;
+                                            -fx-border-color: #E9ECEF;
+                                        </style>
+                                        <columns>
+                                            <TableColumn fx:id="dateColumn" prefWidth="120.0" text="Date" />
+                                            <TableColumn fx:id="timeColumn" prefWidth="100.0" text="Heure" />
+                                            <TableColumn fx:id="doctorColumn" prefWidth="200.0" text="Médecin" />
+                                            <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Statut" />
+                                        </columns>
+                                    </TableView>
+                                    <Button mnemonicParsing="false" onAction="#handleCancelAppointment" text="Annuler le rendez-vous sélectionné">
+                                        <style>
+                                            -fx-background-color: #E74C3C;
+                                            -fx-text-fill: WHITE;
+                                            -fx-font-weight: bold;
+                                            -fx-padding: 10 20;
+                                            -fx-background-radius: 5;
+                                            -fx-cursor: hand;
+                                        </style>
+                              <graphic>
+                                 <HBox prefHeight="19.0" prefWidth="25.0">
+                                    <children>
+                                       <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../images/annulerrv.png" />
+                                          </image>
+                                       </ImageView>
+                                    </children>
+                                 </HBox>
+                              </graphic>
+                                    </Button>
+                                </VBox>
+                            </content>
+                     <graphic>
+                        <HBox prefHeight="19.0" prefWidth="25.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/rendezvous.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </graphic>
+                        </Tab>
+
+                        <Tab text="Nouveau Rendez-vous">
+                            <content>
+                                <VBox spacing="20.0" style="-fx-padding: 20;">
+                                    <ComboBox fx:id="doctorComboBox" prefWidth="300.0" promptText="Choisir un médecin">
+                                        <style>
+                                            -fx-background-color: #FFFFFF;
+                                            -fx-border-color: #E9ECEF;
+                                            -fx-border-radius: 5;
+                                            -fx-background-radius: 5;
+                                            -fx-padding: 5;
+                                        </style>
+                                    </ComboBox>
+                                    <DatePicker fx:id="appointmentDatePicker" prefWidth="300.0" promptText="Choisir une date">
+                                        <style>
+                                            -fx-background-color: #FFFFFF;
+                                            -fx-border-color: #E9ECEF;
+                                            -fx-border-radius: 5;
+                                            -fx-background-radius: 5;
+                                        </style>
+                                    </DatePicker>
+                                    <TextField fx:id="appointmentTimeField" prefWidth="300.0" promptText="Saisir l'heure (HH:mm)">
+                                        <style>
+                                            -fx-background-color: #FFFFFF;
+                                            -fx-border-color: #E9ECEF;
+                                            -fx-border-radius: 5;
+                                            -fx-background-radius: 5;
+                                            -fx-padding: 10;
+                                        </style>
+                                    </TextField>
+                                    <Button fx:id="bookAppointment" mnemonicParsing="false" onAction="#handleBookAppointment" text="Prendre rendez-vous">
+                                        <style>
+                                            -fx-background-color: #2ECC71;
+                                            -fx-text-fill: WHITE;
+                                            -fx-font-weight: bold;
+                                            -fx-padding: 10 20;
+                                            -fx-background-radius: 5;
+                                            -fx-cursor: hand;
+                                        </style>
+                              <graphic>
+                                 <HBox prefHeight="19.0" prefWidth="25.0">
+                                    <children>
+                                       <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../images/prendrerv.png" />
+                                          </image>
+                                       </ImageView>
+                                    </children>
+                                 </HBox>
+                              </graphic>
+                                    </Button>
+                                    <Label fx:id="bookingErrorLabel" textFill="#E74C3C" wrapText="true">
+                                        <style>
+                                            -fx-font-size: 12px;
+                                        </style>
+                                    </Label>
+                                </VBox>
+                            </content>
+                     <graphic>
+                        <HBox prefHeight="19.0" prefWidth="25.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/rendezvous.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </graphic>
+                        </Tab>
+
+                        <Tab text="Rappels">
+                            <content>
+                                <VBox spacing="15.0" style="-fx-padding: 20;">
+                                    <ListView fx:id="remindersList" prefHeight="400.0">
+                                        <style>
+                                            -fx-background-color: #FFFFFF;
+                                            -fx-border-color: #E9ECEF;
+                                            -fx-border-radius: 5;
+                                            -fx-background-radius: 5;
+                                        </style>
+                                    </ListView>
+                                </VBox>
+                            </content>
+                     <graphic>
+                        <HBox prefHeight="19.0" prefWidth="25.0">
+                           <children>
+                              <ImageView fitHeight="19.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/rappel.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </graphic>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
